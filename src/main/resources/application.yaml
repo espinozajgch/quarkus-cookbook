@@ -1,11 +1,20 @@
 greeting:
   message: Hello Yaml
-"%dev":
+'%dev':
+  quarkus:
+    log:
+      console:
+        json: false
+'%staging':
   quarkus:
     http:
       port: 8181
-quarkus:
-  log:
-    level: INFO
-    file:
-      enabled : true
+    log:
+      level: INFO
+      file:
+        enabled : true
+        handler:
+          gelf:
+            enabled: false
+            host: localhost
+            port: 12201
