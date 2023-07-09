@@ -3,4 +3,4 @@ greeting:
 "%dev":
   quarkus:
     http:
-      port: 8181
+      port: 8080
