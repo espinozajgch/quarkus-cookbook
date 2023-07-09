@@ -1,5 +1,9 @@
 package org.acme;
 
+import io.quarkus.security.Authenticated;
+import jakarta.annotation.security.DenyAll;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.GET;
@@ -46,5 +50,34 @@ public class GreetingResource {
     public String helloInjecting() {
         return service.getGreeting();
     }
+
+    @GET
+    @Path("/secured")
+    @RolesAllowed("Tester")
+    public String greetingSecured() {
+        return "Secured";
+    }
+
+    @GET
+    @Path("/unsecured")
+    @PermitAll
+    public String greetingUnsecured() {
+        return "Unsecured";
+    }
+
+    @GET
+    @Path("/denied")
+    @DenyAll
+    public String greetingDenied() {
+        return "Denied";
+    }
+
+    @GET
+    @Path("/authenticated")
+    @Authenticated
+    public String greetingAuthenticated() {
+        return "Authenticated";
+    }
+
 
 }

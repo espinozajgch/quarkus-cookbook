@@ -4,3 +4,16 @@ greeting:
   quarkus:
     http:
       port: 8080
+      auth:
+        basic: true
+    security:
+      users:
+        embedded:
+          enabled: true
+          plain-text: true
+          users:
+            alice: alice
+            bob: bob
+          roles:
+            alice: admin
+            bob: user
