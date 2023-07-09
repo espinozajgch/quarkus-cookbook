@@ -1,5 +1,7 @@
 package org.acme.rest;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -14,7 +16,7 @@ public class DeveloperResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createDeveloper(Developer developer) {
+    public Response createDeveloper(@Valid Developer developer) {
         developer.persist();
         return Response.created(
                 UriBuilder
@@ -28,8 +30,12 @@ public class DeveloperResource {
 
     public static class Developer {
         static long counter = 1;
+
         private long id;
+
+        @Size(min = 4)
         private String name;
+
         public long getId() {
             return id;
         }

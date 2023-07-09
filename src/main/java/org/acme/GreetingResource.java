@@ -1,6 +1,7 @@
 package org.acme;
 
 import jakarta.inject.Inject;
+import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -17,12 +18,14 @@ public class GreetingResource {
     Config config;
 
     @ConfigProperty(name = "greeting.message")
+    @Size(min = 4)
     String message;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String hello() {
-        return "{" + message + "} from RESTEasy Reactive";
+        return "{" +
+                "" + message + "} from RESTEasy Reactive";
     }
 
     @GET

@@ -1,5 +1,6 @@
 package org.acme.rest;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
@@ -17,7 +18,7 @@ public class ExtractRequestParameter {
     public String hello(
             @Context UriInfo uriInfo,
             @QueryParam("order") Order order,
-            @HeaderParam("authorization") String authorization)
+            @NotBlank @HeaderParam("authorization") String authorization)
     {
         return String.format("URI: %s - Order %s - Authorization: %s",
                 uriInfo.getAbsolutePath(), order, authorization);
