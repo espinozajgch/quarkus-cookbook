@@ -4,3 +4,8 @@ greeting:
   quarkus:
     http:
       port: 8181
+quarkus:
+  log:
+    level: INFO
+    file:
+      enabled : true
